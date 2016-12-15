@@ -7,7 +7,7 @@ class TempSensorReader:
 
     def read_temperature(self) -> float:
         lines = self.read_raw_lines()
-        self.parse_temperature_from_lines(lines)
+        return self.parse_temperature_from_lines(lines)
 
     def read_raw_lines(self) -> list:
         f = open(self.path, 'r')
