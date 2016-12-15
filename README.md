@@ -1,6 +1,8 @@
 # Raspberry PI thermostat scripts
 Several thermostat related scripts for Raspberry PI made with Python 3.
 
+Sensor: DS18B20
+
 ## Thermo Logger
 `thermo_logger.py`
 
