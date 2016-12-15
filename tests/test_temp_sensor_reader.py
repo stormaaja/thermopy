@@ -36,5 +36,14 @@ class TestTempSensorReader(unittest.TestCase):
         self.assertEqual("4d 01 4b 46 7f ff 0c 10 c0 t=20812\n",
             lines[1])
 
+    def test_parse_temperature_from_lines(self):
+        reader = TempSensorReader(self.mock_file)
+        lines = [
+            '4d 01 4b 46 7f ff 0c 10 c0 : crc=c0 YES',
+            '4d 01 4b 46 7f ff 0c 10 c0 t=21201'
+        ]
+        temperature = reader.parse_temperature_from_lines(lines)
+        self.assertAlmostEqual(21.201, temperature, delta=0.001)
+
 if __name__ == '__main__':
     unittest.main()
