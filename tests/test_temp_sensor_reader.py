@@ -66,6 +66,10 @@ class TestTempSensorReader(unittest.TestCase):
         with self.assertRaises(TemperatureNotValid):
             reader.parse_temperature_from_lines(lines)
 
+    def test_read_temperature(self):
+        reader = TempSensorReader(self.mock_file)
+        temperature = reader.read_temperature()
+        self.assertAlmostEqual(20.812, temperature, delta=0.001)
 
 if __name__ == '__main__':
     unittest.main()
