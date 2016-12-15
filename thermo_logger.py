@@ -18,9 +18,6 @@ RELAY_PIN = 4
 def get_running_time():
     return time.time() - START_TIME
 
-def read_temperature():
-    return
-
 def set_heating(enable):
     not_used_yet = enable
     return enable
@@ -29,23 +26,6 @@ def log_temperature(running_time, temperature, heating):
     f = open(LOG_FILENAME, 'a')
     f.write("{0},{1},{2}\n".format(running_time, temperature, heating))
     f.close()
-
-def read_temperature_raw_lines():
-    f = open(DEVICE_FILE, 'r')
-    lines = f.readlines()
-    f.close()
-    return lines
-
-def read_temp():
-    lines = read_temperature_raw_lines()
-    while lines[0].strip()[-3:] != 'YES':
-        time.sleep(0.2)
-        lines = read_temperature_raw_lines()
-    equals_pos = lines[1].find('t=')
-    if equals_pos != -1:
-        temp_string = lines[1][equals_pos+2:]
-        temp_c = float(temp_string) / 1000.0
-        return temp_c
 
 def signal_handler(signal, frame):
     GPIO.cleanup()
