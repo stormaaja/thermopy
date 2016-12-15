@@ -1,6 +1,6 @@
 from array import array
 
-class ThermoSensor:
+class TempSensorReader:
 
     def __init__(self, path: str):
         self.path = path
