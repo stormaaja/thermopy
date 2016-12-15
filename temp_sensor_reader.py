@@ -1,4 +1,3 @@
-from array import array
 
 class TempSensorReader:
 
@@ -8,13 +7,13 @@ class TempSensorReader:
     def get_temperature(self) -> float:
         return 0.0
 
-    def read_temperature_raw_lines(self) -> array:
+    def read_temperature_raw_lines(self) -> list:
         f = open(self.path, 'r')
         lines = f.readlines()
         f.close()
         return lines
 
-    def read_temp_from_lines(self, lines: array) -> float:
+    def read_temp_from_lines(self, lines: list) -> float:
         lines = read_temperature_raw_lines()
         while lines[0].strip()[-3:] != 'YES':
             time.sleep(0.2)
