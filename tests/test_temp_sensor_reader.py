@@ -4,6 +4,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 import unittest
 from temp_sensor_reader import TempSensorReader
+from temperature_not_valid import TemperatureNotValid
 
 class TestTempSensorReader(unittest.TestCase):
 
@@ -44,6 +45,27 @@ class TestTempSensorReader(unittest.TestCase):
         ]
         temperature = reader.parse_temperature_from_lines(lines)
         self.assertAlmostEqual(21.201, temperature, delta=0.001)
+
+    def test_exception_in_parse_temperature_from_lines(self):
+        reader = TempSensorReader("not_existing_mock_file")
+        lines = [
+            '4d 01 4b 46 7f ff 0c 10 c0 : crc=c0 NO',
+            '4d 01 4b 46 7f ff 0c 10 c0 t=21201'
+        ]
+        with self.assertRaises(TemperatureNotValid):
+            reader.parse_temperature_from_lines(lines)
+
+        lines = [
+            '4d 01 4b 46 7f ff 0c 10 c0 : crc=c0 YES',
+            '4d 01 4b 46 7f ff 0c 10 c0'
+        ]
+        with self.assertRaises(TemperatureNotValid):
+            reader.parse_temperature_from_lines(lines)
+
+        lines = []
+        with self.assertRaises(TemperatureNotValid):
+            reader.parse_temperature_from_lines(lines)
+
 
 if __name__ == '__main__':
     unittest.main()
