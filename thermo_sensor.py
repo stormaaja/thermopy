@@ -19,8 +19,9 @@ class ThermoSensor:
             time.sleep(0.2)
             lines = read_temperature_raw_lines()
         equals_pos = lines[1].find('t=')
-        if equals_pos != -1:
-            temp_string = lines[1][equals_pos+2:]
-            temp_c = float(temp_string) / 1000.0
-            return temp_c
-        
+
+        if equals_pos == -1: raise RuntimeError("No data available")
+
+        temp_string = lines[1][equals_pos+2:]
+        temp_c = float(temp_string) / 1000.0
+        return temp_c
