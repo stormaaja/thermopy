@@ -24,4 +24,4 @@ class TempSensorReader:
 
         temperature_string = lines[1][temperature_position + 2:]
         temperature = float(temperature_string) / 1000.0
-        return temp_c
+        return temperature
