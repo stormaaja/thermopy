@@ -3,12 +3,19 @@ Several thermostat related scripts for Raspberry PI made with Python 3.
 
 Sensor: DS18B20
 
+- [GPIO pins usage](https://www.raspberrypi.org/documentation/usage/gpio/)
+- [Sensor Adafruit] (https://learn.adafruit.com/adafruits-raspberry-pi-lesson-11-ds18b20-temperature-sensing/overview)
+- [Project structure](http://docs.python-guide.org/en/latest/writing/structure/)
+
 ## Thermo Logger
 `thermo_logger.py`
 
 Script is for logging behavior of a heating element. Data can help
 investigating heating element response time and other elements which affects
 controlling temperature.
+
+## Links
+
 
 ## License
 The MIT License (MIT) Copyright (c) 2016 Matti Ahinko
