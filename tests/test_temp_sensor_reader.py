@@ -28,9 +28,9 @@ class TestTempSensorReader(unittest.TestCase):
             "4d 01 4b 46 7f ff 0c 10 c0 t={}".format(int(temperature * 1000))
         ]
 
-    def test_read_temperature_raw_lines(self):
+    def test_read_raw_lines(self):
         reader = TempSensorReader(self.mock_file)
-        lines = reader.read_temperature_raw_lines()
+        lines = reader.read_raw_lines()
         self.assertEqual("4d 01 4b 46 7f ff 0c 10 c0 : crc=c0 YES\n",
             lines[0])
         self.assertEqual("4d 01 4b 46 7f ff 0c 10 c0 t=20812\n",
