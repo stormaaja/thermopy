@@ -46,7 +46,8 @@ class ThermoLogger:
             current_temperature = self.read_current_temperature()
             current_running_time = self.get_running_time()
 
-            self.csv_logger.log(get_running_time(), current_temperature, heating)
+            self.csv_logger.log(
+                get_running_time(), current_temperature, heating)
 
             print("\r{0:.2f}: {1:.2f} {2}"\
                 .format(current_running_time, current_temperature, heating), end="")
