@@ -31,8 +31,7 @@ class ThermoLogger:
             heating = self.heating_relay.get_state()
 
             self.csv_logger.log(
-                self.get_running_time(), current_temperature,
-                heating)
+                self.get_running_time(), current_temperature, heating)
 
             print("\r{0:.2f}: {1:.2f} {2}"\
                     .format(current_running_time, current_temperature, heating),
