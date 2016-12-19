@@ -22,9 +22,6 @@ class ThermoLogger:
     def set_heating_relay(self, pin: int):
         self.heating_relay = HeatingRelay(pin)
 
-    def clean(self):
-        self.heating_relay.cleanup()
-
     def get_running_time(self):
         return self.time.time() - self.start_time
 
@@ -35,7 +32,7 @@ class ThermoLogger:
         self.target_temperature = target_temperature
 
     def should_heat(self) -> bool:
-        return current_temperature >= self.target_temperature
+        return current_temperature < self.target_temperature
 
     def run(self):
         self.set_heating(True)
