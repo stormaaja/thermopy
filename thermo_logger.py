@@ -5,9 +5,6 @@ import sys
 import os
 import glob
 
-from temp_sensor_reader import TempSensorReader
-from heating_relay import HeatingRelay
-
 class ThermoLogger:
 
     def __init__(self):
@@ -16,8 +13,8 @@ class ThermoLogger:
     def set_csv_logger(self, csv_logger: CSVLogger):
         self.csv_logger = csv_logger
 
-    def set_temp_sensor_reader(self, device_file: str):
-        self.temp_sensor_reader = TempSensorReader(device_file)
+    def set_temp_sensor_reader(self, temp_sensor_reader: TempSensorReader):
+        self.temp_sensor_reader = temp_sensor_reader
 
     def read_current_temperature(self) -> float:
         return self.temp_sensor_reader.read_temperature()

@@ -2,6 +2,7 @@ import signal
 
 from thermo_logger import ThermoLogger
 from csv_logger import CSVLogger
+from temp_sensor_reader import TempSensorReader
 
 TARGET_TEMPERATURE_CHANGE = 5
 LOG_FILENAME = "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
@@ -22,6 +23,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 thermo_logger.set_csv_logger(CSVLogger(LOG_FILENAME)
+thermo_logger.set_temp_sensor_reader(TempSensorReader(DEVICE_FILE))
 thermo_logger.set_temp_sensor_reader(DEVICE_FILE)
 thermo_logger.set_target_temperature(
     thermo_logger.read_current_temperature() + TARGET_TEMPERATURE_CHANGE)
