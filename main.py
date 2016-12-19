@@ -23,5 +23,6 @@ signal.signal(signal.SIGINT, signal_handler)
 thermo_logger.set_temp_sensor_reader(DEVICE_FILE)
 thermo_logger.set_target_temperature(
     thermo_logger.read_current_temperature() + TARGET_TEMPERATURE_CHANGE)
+thermo_logger.set_heating_relay(RELAY_PIN)
 
 thermo_logger.run()
