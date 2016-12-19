@@ -5,6 +5,9 @@ import sys
 import os
 import glob
 
+from csv_logger import CSVLogger
+from temp_sensor_reader import TempSensorReader
+
 class ThermoLogger:
 
     def __init__(self):
