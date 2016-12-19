@@ -31,6 +31,7 @@ class ThermoLogger:
 
     def set_heating(self, heating: bool):
         self.heating = heating
+        self.heating_relay.set_heating(heating)
         return
 
     def set_target_temperature(self, target_temperature: int):
