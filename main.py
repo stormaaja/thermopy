@@ -1,6 +1,7 @@
 import signal
 
 from thermo_logger import ThermoLogger
+from csv_logger import CSVLogger
 
 TARGET_TEMPERATURE_CHANGE = 5
 LOG_FILENAME = "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
@@ -12,7 +13,7 @@ RELAY_PIN = 4
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
-thermo_logger = ThermoLogger(LOG_FILENAME)
+thermo_logger = ThermoLogger()
 
 def signal_handler(signal, frame):
     thermo_logger.clean()
@@ -20,6 +21,7 @@ def signal_handler(signal, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
+thermo_logger.set_csv_logger(CSVLogger(LOG_FILENAME)
 thermo_logger.set_temp_sensor_reader(DEVICE_FILE)
 thermo_logger.set_target_temperature(
     thermo_logger.read_current_temperature() + TARGET_TEMPERATURE_CHANGE)

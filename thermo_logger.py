@@ -10,9 +10,11 @@ from heating_relay import HeatingRelay
 
 class ThermoLogger:
 
-    def __init__(self, log_file: str):
+    def __init__(self):
         self.start_time = time.time()
-        self.csv_logger = CSVLogger(log_file)
+
+    def set_csv_logger(self, csv_logger: CSVLogger):
+        self.csv_logger = csv_logger
 
     def set_temp_sensor_reader(self, device_file: str):
         self.temp_sensor_reader = TempSensorReader(device_file)
