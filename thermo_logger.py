@@ -25,9 +25,6 @@ class ThermoLogger:
     def get_running_time(self):
         return self.time.time() - self.start_time
 
-    def set_heating(self, heating: bool):
-        self.heating_relay.set_heating(heating)
-
     def set_target_temperature(self, target_temperature: int):
         self.target_temperature = target_temperature
 
@@ -47,6 +44,6 @@ class ThermoLogger:
                 end="")
 
             if self.heating and not self.thermostat.should_heat():
-                self.set_heating(False)
+                self.heating_relay.set_heating(heating)
 
             time.sleep(1)
