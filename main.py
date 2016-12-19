@@ -1,3 +1,5 @@
+import signal
+
 from thermo_logger import ThermoLogger
 
 TARGET_TEMPERATURE_CHANGE = 5

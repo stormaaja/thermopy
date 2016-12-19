@@ -1,7 +1,6 @@
 #!/bin/python
 import time
 import datetime
-import signal
 import sys
 import os
 import glob
