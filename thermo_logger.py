@@ -34,9 +34,6 @@ class ThermoLogger:
     def set_target_temperature(self, target_temperature: int):
         self.target_temperature = target_temperature
 
-    def should_heat(self) -> bool:
-        return self.thermostat.should_heat()
-
     def run(self):
         self.set_heating(True)
 
@@ -52,7 +49,7 @@ class ThermoLogger:
                     .format(current_running_time, current_temperature, heating),
                 end="")
 
-            if self.heating and not self.should_heat:
+            if self.heating and not self.thermostat.should_heat():
                 self.set_heating(False)
 
             time.sleep(1)
