@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-class HeatingRelay:
+class HeatingRelay(Relay):
 
     def __init__(self, pin: int):
         GPIO.setmode(GPIO.BCM)
@@ -8,7 +8,7 @@ class HeatingRelay:
         self.pin = pin
         self.set_heating(False)
 
-    def clean(self):
+    def cleanup(self):
         GPIO.cleanup()
 
     def set_heating(self, heating: bool):
