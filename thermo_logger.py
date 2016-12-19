@@ -1,11 +1,9 @@
 #!/bin/python
 import time
-import sys
-import os
-import glob
 
 from csv_logger import CSVLogger
 from thermostat import Thermostat
+from relay import Relay
 
 class ThermoLogger:
 
@@ -18,14 +16,14 @@ class ThermoLogger:
     def set_thermostat(self, thermostat: Thermostat):
         self.thermostat = thermostat
 
-    def set_heating_relay(self, pin: int):
-        self.heating_relay = HeatingRelay(pin)
+    def set_heating_relay(self, heating_relay: Relay):
+        self.heating_relay = heating_relay
 
     def get_running_time(self):
         return self.time.time() - self.start_time
 
     def run(self):
-        self.set_heating(True)
+        self.heating_relay.set_state(True)
 
         while True:
             current_temperature = self.thermostat.read_current_temperature()
@@ -39,7 +37,8 @@ class ThermoLogger:
                     .format(current_running_time, current_temperature, heating),
                 end="")
 
-            if self.heating and not self.thermostat.should_heat():
-                self.heating_relay.set_heating(heating)
+            if self.heating_relay.get_state() and \
+                    not self.thermostat.should_heat():
+                self.heating_relay.set_state(False)
 
             time.sleep(1)
