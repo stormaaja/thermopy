@@ -35,7 +35,7 @@ thermostat.set_target_temperature(
 
 thermo_logger = ThermoLogger()
 
-thermo_logger.set_csv_logger(CSVLogger(LOG_FILENAME)
+thermo_logger.set_csv_logger(CSVLogger(LOG_FILENAME))
 thermo_logger.set_thermostat(thermostat)
 thermo_logger.set_heating_relay(heating_relay)
 
