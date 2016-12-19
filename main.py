@@ -15,19 +15,20 @@ RELAY_PIN = 4
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
-thermo_logger = ThermoLogger()
+heating_relay = HeatingRelay(RELAY_PIN)
 
 def signal_handler(signal, frame):
-    thermo_logger.clean()
+    heating_relay.cleanup()
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signal_handler)
 
+thermo_logger = ThermoLogger()
 thermo_logger.set_csv_logger(CSVLogger(LOG_FILENAME)
 thermo_logger.set_temp_sensor_reader(TempSensorReader(DEVICE_FILE))
 thermo_logger.set_temp_sensor_reader(DEVICE_FILE)
 thermo_logger.set_target_temperature(
     thermo_logger.read_current_temperature() + TARGET_TEMPERATURE_CHANGE)
-thermo_logger.set_heating_relay(RELAY_PIN)
+thermo_logger.set_heating_relay(heating_relay)
 
 thermo_logger.run()
