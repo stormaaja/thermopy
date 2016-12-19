@@ -25,9 +25,6 @@ class ThermoLogger:
     def get_running_time(self):
         return self.time.time() - self.start_time
 
-    def set_target_temperature(self, target_temperature: int):
-        self.target_temperature = target_temperature
-
     def run(self):
         self.set_heating(True)
 
