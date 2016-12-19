@@ -28,17 +28,17 @@ class ThermoLogger:
         while True:
             current_temperature = self.thermostat.read_current_temperature()
             current_running_time = self.get_running_time()
+            heating = self.heating_relay.get_state()
 
             self.csv_logger.log(
                 self.get_running_time(), current_temperature,
-                self.heating_relay.is_heating())
+                heating)
 
             print("\r{0:.2f}: {1:.2f} {2}"\
                     .format(current_running_time, current_temperature, heating),
                 end="")
 
-            if self.heating_relay.get_state() and \
-                    not self.thermostat.should_heat():
+            if heating and not self.thermostat.should_heat():
                 self.heating_relay.set_state(False)
 
             time.sleep(1)
