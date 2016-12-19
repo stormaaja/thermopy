@@ -20,7 +20,7 @@ class ThermoLogger:
         self.heating_relay = heating_relay
 
     def get_running_time(self):
-        return self.time.time() - self.start_time
+        return time.time() - self.start_time
 
     def run(self):
         self.heating_relay.set_state(True)
