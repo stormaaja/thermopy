@@ -3,6 +3,7 @@ import signal
 from thermo_logger import ThermoLogger
 from csv_logger import CSVLogger
 from temp_sensor_reader import TempSensorReader
+from heating_relay import HeatingRelay
 
 TARGET_TEMPERATURE_CHANGE = 5
 LOG_FILENAME = "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
