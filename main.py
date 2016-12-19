@@ -11,7 +11,8 @@ from heating_relay import HeatingRelay
 from thermostat import Thermostat
 
 TARGET_TEMPERATURE_CHANGE = 5
-LOG_FILENAME = "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
+LOG_FILENAME = \
+    "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 BASE_DIR = '/sys/bus/w1/devices/'
 DEVICE_FOLDER = glob.glob(BASE_DIR + '28*')[0]
 DEVICE_FILE = DEVICE_FOLDER + '/w1_slave'
