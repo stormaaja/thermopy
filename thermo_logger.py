@@ -7,6 +7,8 @@ import os
 import glob
 import RPi.GPIO as GPIO
 
+from temp_sensor_reader import TempSensorReader
+
 TARGET_TEMPERATURE_CHANGE = 5
 LOG_FILENAME = "{0}.csv".format(datetime.datetime.now().strftime("%Y%m%d%H%M%S"))
 START_TIME = time.time()
@@ -14,6 +16,8 @@ BASE_DIR = '/sys/bus/w1/devices/'
 DEVICE_FOLDER = glob.glob(BASE_DIR + '28*')[0]
 DEVICE_FILE = DEVICE_FOLDER + '/w1_slave'
 RELAY_PIN = 4
+
+temperature_reader = TempSensorReader(DEVICE_FILE)
 
 def get_running_time():
     return time.time() - START_TIME
