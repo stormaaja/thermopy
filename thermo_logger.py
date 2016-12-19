@@ -17,7 +17,7 @@ DEVICE_FOLDER = glob.glob(BASE_DIR + '28*')[0]
 DEVICE_FILE = DEVICE_FOLDER + '/w1_slave'
 RELAY_PIN = 4
 
-temperature_reader = TempSensorReader(DEVICE_FILE)
+temp_sensor_reader = TempSensorReader(DEVICE_FILE)
 
 def get_running_time():
     return time.time() - START_TIME
@@ -44,7 +44,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(RELAY_PIN, GPIO.OUT)
 
 heating = set_heating(True)
-target = read_temperature() + TARGET_TEMPERATURE_CHANGE
+target = temp_sensor_reader.read_temperature() + TARGET_TEMPERATURE_CHANGE
 
 while True:
     current_temperature = read_temperature()
