@@ -53,4 +53,5 @@ class ThermoLogger:
 
             if self.heating and not self.should_heat:
                 self.set_heating(False)
+
             time.sleep(1)
