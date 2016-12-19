@@ -50,7 +50,8 @@ class ThermoLogger:
                 get_running_time(), current_temperature, heating)
 
             print("\r{0:.2f}: {1:.2f} {2}"\
-                .format(current_running_time, current_temperature, heating), end="")
+                    .format(current_running_time, current_temperature, heating),
+                end="")
 
             if self.heating and not self.should_heat:
                 self.set_heating(False)
