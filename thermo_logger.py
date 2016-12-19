@@ -17,6 +17,9 @@ class ThermoLogger:
     def set_temp_sensor_reader(self, device_file: str):
         self.temp_sensor_reader = TempSensorReader(device_file)
 
+    def read_current_temperature(self) -> float:
+        return self.temp_sensor_reader.read_temperature()
+
     def set_heating_relay(self, pin: int):
         self.heating_relay = HeatingRelay(pin)
 
@@ -37,7 +40,7 @@ class ThermoLogger:
         self.set_heating(True)
 
         while True:
-            current_temperature = self.temp_sensor_reader.read_temperature()
+            current_temperature = self.read_current_temperature()
             current_running_time = self.get_running_time()
 
             self.csv_logger.log(get_running_time(), current_temperature, heating)
