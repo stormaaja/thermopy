@@ -7,6 +7,7 @@ import os
 import glob
 
 from temp_sensor_reader import TempSensorReader
+from heating_relay import HeatingRelay
 
 class ThermoLogger:
 
