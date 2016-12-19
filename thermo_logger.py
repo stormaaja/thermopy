@@ -13,7 +13,7 @@ class ThermoLogger:
 
     def __init__(self, log_file: str):
         self.start_time = time.time()
-        self.log_file = log_file
+        self.csv_logger = CSVLogger(log_file)
 
     def set_temp_sensor_reader(self, device_file: str):
         self.temp_sensor_reader = TempSensorReader(device_file)
@@ -34,11 +34,6 @@ class ThermoLogger:
         self.heating = heating
         return
 
-    def log_temperature(self, running_time, temperature, heating):
-        f = open(self.log_file, 'a')
-        f.write("{0},{1},{2}\n".format(running_time, temperature, heating))
-        f.close()
-
     def set_target_temperature(self, target_temperature: int):
         self.target_temperature = target_temperature
 
@@ -49,7 +44,7 @@ class ThermoLogger:
             current_temperature = self.read_temperature()
             current_running_time = self.get_running_time()
 
-            log_temperature(get_running_time(), current_temperature, heating)
+            self.csv_logger.log(get_running_time(), current_temperature, heating)
 
             print("\r{0:.2f}: {1:.2f} {2}"\
                 .format(current_running_time, current_temperature, heating), end="")
