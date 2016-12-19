@@ -6,7 +6,7 @@ import os
 import glob
 
 from csv_logger import CSVLogger
-from temp_sensor_reader import TempSensorReader
+from thermostat import Thermostat
 
 class ThermoLogger:
 
@@ -16,11 +16,11 @@ class ThermoLogger:
     def set_csv_logger(self, csv_logger: CSVLogger):
         self.csv_logger = csv_logger
 
-    def set_temp_sensor_reader(self, temp_sensor_reader: TempSensorReader):
-        self.temp_sensor_reader = temp_sensor_reader
+    def set_thermostat(self, thermostat: Thermostat):
+        self.thermostat = thermostat
 
     def read_current_temperature(self) -> float:
-        return self.temp_sensor_reader.read_temperature()
+        return self.thermostat.read_current_temperature()
 
     def set_heating_relay(self, pin: int):
         self.heating_relay = HeatingRelay(pin)
@@ -35,7 +35,7 @@ class ThermoLogger:
         self.target_temperature = target_temperature
 
     def should_heat(self) -> bool:
-        return self.read_current_temperature() < self.target_temperature
+        return self.thermostat.should_heat()
 
     def run(self):
         self.set_heating(True)
