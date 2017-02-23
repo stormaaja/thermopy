@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 
+from relay import Relay
+
 class HeatingRelay(Relay):
 
     def __init__(self, pin: int):
