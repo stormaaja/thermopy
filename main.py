@@ -16,7 +16,7 @@ LOG_FILENAME = \
 BASE_DIR = '/sys/bus/w1/devices/'
 DEVICE_FOLDER = glob.glob(BASE_DIR + '28*')[0]
 DEVICE_FILE = DEVICE_FOLDER + '/w1_slave'
-RELAY_PIN = 4
+RELAY_PIN = 17
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
